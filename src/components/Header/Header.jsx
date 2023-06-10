@@ -1,13 +1,13 @@
-const { NavLink } = require('react-router-dom');
+import { HeaderCont, Nav, NavLink } from "./Header.styled";
 
 const Header = () => {
   return (
-    <header>
-      <nav>
+    <HeaderCont>
+      <Nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/movies">Movies</NavLink>
-      </nav>
-    </header>
+      </Nav>
+    </HeaderCont>
   );
 };
 

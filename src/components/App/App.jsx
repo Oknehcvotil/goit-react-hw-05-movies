@@ -1,6 +1,6 @@
-import Header from 'components/Header';
-import { Route, Router, RouterProvider, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
 import Layout from 'components/Layout';
 
 const Home = lazy(() => import('pages/Home'));
