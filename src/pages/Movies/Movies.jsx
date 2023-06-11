@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import SearchForm from 'components/SearchForm';
 import APIService from 'services/api-service';
 import MovieGallery from 'components/MovieGallery';
@@ -6,31 +7,43 @@ import MovieGallery from 'components/MovieGallery';
 const apiService = new APIService();
 
 const Movies = () => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
 
-  const handleSearch = value => {
-    if (value === searchValue) {
-      return;
-    }
-
-    setSearchValue(value);
-  };
+  const query = searchParams.get('query') ?? '';
+  console.log(query);
 
   useEffect(() => {
-    if (!searchValue) {
+    if (!query) {
       return;
     }
 
-    getMovies();
+    getMovies(query);
     // eslint-disable-next-line
-  }, [searchValue]);
+  }, [query, searchParams, page]);
+
+  const updateQueryString = value => {
+    if (value === query) {
+      return;
+    }
+
+    setPage(1);
+    const nextParams = value !== '' ? { query: value } : {};
+    setSearchParams(nextParams);
+  };
 
   async function getMovies() {
+    if (page === 1) {
+      // onLoadMore(false);
+      setMovies([]);
+    }
+
     try {
-      const response = await apiService.searchMovieByQuery(searchValue);
+      const response = await apiService.searchMovieByQuery(query, page);
       console.log(response);
-      setMovies(movies => [...movies, ...response]);
+      // setMovies(movies => [...movies, ...response]);
+      setMovies(response);
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +51,7 @@ const Movies = () => {
 
   return (
     <>
-      <SearchForm handleSearch={handleSearch} />
+      <SearchForm value={query} handleSearch={updateQueryString} />
       <MovieGallery movies={movies} />
     </>
   );

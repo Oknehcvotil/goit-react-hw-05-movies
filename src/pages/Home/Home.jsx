@@ -7,6 +7,7 @@ const apiService = new APIService();
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+ 
 
   useEffect(() => {
     getTrends();
