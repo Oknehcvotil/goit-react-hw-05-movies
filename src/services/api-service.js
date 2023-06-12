@@ -19,7 +19,7 @@ export default class APIService {
       `${this.baseURL}search/movie?api_key=${this.key}&query=${query}&page=${page}`
     );
 
-    return response.data.results;
+    return response.data;
   }
 
   async getMovieDetails(id) {

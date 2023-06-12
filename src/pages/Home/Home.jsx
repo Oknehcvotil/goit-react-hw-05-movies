@@ -1,13 +1,14 @@
 import APIService from 'services/api-service';
 import MovieGallery from 'components/MovieGallery';
 import { useEffect, useState } from 'react';
-import { HomeTitle } from './Home.styled';
+import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
 
 const apiService = new APIService();
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
- 
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getTrends();
@@ -16,18 +17,21 @@ const Home = () => {
 
   async function getTrends() {
     try {
+      setIsLoading(true);
       const response = await apiService.getTrends();
       console.log(response);
       setMovies(response);
     } catch (error) {
-      console.log(error);
+      toast.error(`${error.message}`);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   return (
     <>
-      <HomeTitle>Trending today</HomeTitle>
-      <MovieGallery movies={movies} />
+      <MovieGallery title={'Trending today'} movies={movies} />
+      {isLoading && <Loader />}
     </>
   );
 };

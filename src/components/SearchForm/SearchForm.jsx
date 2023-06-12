@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Form, Input, FormBtn } from './SearchForm.styled';
+import { toast } from 'react-toastify';
 
 const SearchForm = ({ handleSearch }) => {
   const [value, setValue] = useState('');
@@ -12,7 +13,7 @@ const SearchForm = ({ handleSearch }) => {
     e.preventDefault();
 
     if (value.trim() === '') {
-      // toast.warning('Please write what you are looking for.');
+      toast.warning('Please write what you are looking for.');
       return;
     }
 

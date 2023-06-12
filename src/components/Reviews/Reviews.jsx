@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import APIService from 'services/api-service';
+import { toast } from 'react-toastify';
 
 const apiService = new APIService();
 
@@ -19,7 +20,7 @@ const Reviews = () => {
       console.log(response.results);
       setMovieReviews(response.results);
     } catch (error) {
-      console.log(error);
+      toast.error(`${error.message}`);
     }
   }
 

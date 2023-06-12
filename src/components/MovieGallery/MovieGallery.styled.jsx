@@ -1,6 +1,14 @@
 import styled from '@emotion/styled';
 import { Link as BasicLink } from 'react-router-dom';
 
+export const HomeTitle = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+`;
+
 export const MovieList = styled.ul`
   list-style-type: none;
   padding: 0;

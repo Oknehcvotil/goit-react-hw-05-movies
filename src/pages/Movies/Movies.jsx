@@ -3,16 +3,20 @@ import { useSearchParams } from 'react-router-dom';
 import SearchForm from 'components/SearchForm';
 import APIService from 'services/api-service';
 import MovieGallery from 'components/MovieGallery';
+import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
+import Pagination from 'components/Pagination';
 
 const apiService = new APIService();
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const query = searchParams.get('query') ?? '';
-  console.log(query);
 
   useEffect(() => {
     if (!query) {
@@ -30,29 +34,42 @@ const Movies = () => {
 
     setPage(1);
     const nextParams = value !== '' ? { query: value } : {};
+    // const nextParams = value !== '' ? { query: value, page } : {};
     setSearchParams(nextParams);
   };
 
   async function getMovies() {
+    setIsLoading(true);
     if (page === 1) {
-      // onLoadMore(false);
       setMovies([]);
     }
 
     try {
       const response = await apiService.searchMovieByQuery(query, page);
-      console.log(response);
-      // setMovies(movies => [...movies, ...response]);
-      setMovies(response);
+
+      setTotalPages(response.total_pages);
+      setMovies(response.results);
     } catch (error) {
-      console.log(error);
+      toast.error(`${error.message}`);
+    } finally {
+      setIsLoading(false);
     }
   }
+
+  const handlePageChange = e => {
+    setPage(e.selected + 1);
+
+    // setSearchParams({ query, page });
+  };
 
   return (
     <>
       <SearchForm value={query} handleSearch={updateQueryString} />
       <MovieGallery movies={movies} />
+      {totalPages > 1 && (
+        <Pagination pages={totalPages} onChange={handlePageChange} />
+      )}
+      {isLoading && <Loader />}
     </>
   );
 };
