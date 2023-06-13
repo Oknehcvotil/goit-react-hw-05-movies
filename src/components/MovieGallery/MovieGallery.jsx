@@ -1,5 +1,6 @@
 import MovieCard from 'components/MovieCard';
 import { HomeTitle, MovieList } from './MovieGallery.styled';
+import PropTypes from 'prop-types';
 
 const MovieGallery = ({ title, movies }) => {
   return (
@@ -18,6 +19,11 @@ const MovieGallery = ({ title, movies }) => {
       </MovieList>
     </>
   );
+};
+
+MovieGallery.propTypes = {
+  movies: PropTypes.array.isRequired,
+  title: PropTypes.string,
 };
 
 export default MovieGallery;

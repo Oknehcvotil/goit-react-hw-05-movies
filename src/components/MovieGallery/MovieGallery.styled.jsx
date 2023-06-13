@@ -15,4 +15,3 @@ export const MovieList = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
 `;
-

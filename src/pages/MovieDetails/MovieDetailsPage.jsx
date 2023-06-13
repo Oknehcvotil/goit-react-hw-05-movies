@@ -24,8 +24,9 @@ const MovieDetails = () => {
   async function getMovie() {
     try {
       setIsLoading(true);
+
       const response = await apiService.getMovieDetails(movieId);
-      console.log(response);
+
       setMovie(response);
     } catch (error) {
       toast.error(`${error.message}`);

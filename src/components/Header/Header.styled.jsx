@@ -22,7 +22,7 @@ export const NavLink = styled(BasicNavLink)`
 
   :hover,
   :focus,
-  .active {
+  &.active {
     color: #ff0000;
   }
 

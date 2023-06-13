@@ -33,6 +33,7 @@ const Movies = () => {
     }
 
     setPage(1);
+
     const nextParams = value !== '' ? { query: value } : {};
     // const nextParams = value !== '' ? { query: value, page } : {};
     setSearchParams(nextParams);
@@ -40,6 +41,7 @@ const Movies = () => {
 
   async function getMovies() {
     setIsLoading(true);
+    
     if (page === 1) {
       setMovies([]);
     }

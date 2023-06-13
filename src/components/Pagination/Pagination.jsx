@@ -1,5 +1,6 @@
 import ReactPaginate from 'react-paginate';
 import styles from './Pagination.module.css';
+import PropTypes from 'prop-types';
 
 const Pagination = ({ pages, onChange }) => {
   return (
@@ -18,6 +19,11 @@ const Pagination = ({ pages, onChange }) => {
       nextLinkClassName={styles['page-link']}
     />
   );
+};
+
+Pagination.propTypes = {
+  page: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Pagination;

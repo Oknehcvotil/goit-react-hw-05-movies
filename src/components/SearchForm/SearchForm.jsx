@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form, Input, FormBtn } from './SearchForm.styled';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 const SearchForm = ({ handleSearch }) => {
   const [value, setValue] = useState('');
@@ -37,6 +38,10 @@ const SearchForm = ({ handleSearch }) => {
       </Form>
     </>
   );
+};
+
+SearchForm.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

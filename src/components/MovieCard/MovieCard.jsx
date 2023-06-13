@@ -1,6 +1,7 @@
 import { Link, MovieListItem, Img, MovieName } from './MovieCard.styled';
 import { useLocation } from 'react-router-dom';
 import image from '../../images/coming_soon.jpg';
+import PropTypes from 'prop-types';
 
 const MovieCard = ({ id, title, name, poster_path }) => {
   const location = useLocation();
@@ -20,6 +21,13 @@ const MovieCard = ({ id, title, name, poster_path }) => {
       </Link>
     </MovieListItem>
   );
+};
+
+MovieCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  name: PropTypes.string,
+  poster_path: PropTypes.string,
 };
 
 export default MovieCard;

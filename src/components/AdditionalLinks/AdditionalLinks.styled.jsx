@@ -30,7 +30,8 @@ export const NavLink = styled(BasedNavLink)`
   }
 
   :hover,
-  :focus {
+  :focus,
+  &.active {
     background-color: #ff0000;
     color: #fff;
   }

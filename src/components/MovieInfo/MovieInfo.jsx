@@ -9,6 +9,7 @@ import {
   MovieName,
   MovieGenresTitle,
 } from './MovieInfo.styled';
+import PropTypes from 'prop-types';
 
 const MovieInfo = ({ movie }) => {
   const { vote_average, genres, poster_path, title, name, overview } = movie;
@@ -41,6 +42,10 @@ const MovieInfo = ({ movie }) => {
       </MovieDetailsContainer>
     </MoviePageContainer>
   );
+};
+
+MovieInfo.propTypes = {
+  movie: PropTypes.object.isRequired,
 };
 
 export default MovieInfo;

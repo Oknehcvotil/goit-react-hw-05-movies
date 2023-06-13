@@ -19,7 +19,6 @@ const Home = () => {
     try {
       setIsLoading(true);
       const response = await apiService.getTrends();
-      console.log(response);
       setMovies(response);
     } catch (error) {
       toast.error(`${error.message}`);

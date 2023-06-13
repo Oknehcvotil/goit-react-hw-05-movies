@@ -3,7 +3,7 @@ import { LoaderContainer } from './Loader.styled';
 
 const Loader = () => {
   return (
-    <LoaderContainer >
+    <LoaderContainer>
       <RotatingLines
         strokeColor="red"
         strokeWidth="5"
@@ -11,7 +11,7 @@ const Loader = () => {
         width="120"
         visible={true}
       />
-    </LoaderContainer >
+    </LoaderContainer>
   );
 };
 
