@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Link as BasicLink } from 'react-router-dom';
 
 export const HomeTitle = styled.h1`
   font-size: 24px;
@@ -12,19 +11,8 @@ export const HomeTitle = styled.h1`
 export const MovieList = styled.ul`
   list-style-type: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
 `;
 
-export const MovieListItem = styled.li`
-  margin-bottom: 5px;
-`;
-
-export const Link = styled(BasicLink)`
-  text-decoration: none;
-  color: #333;
-  transition: color 0.3s ease-in-out;
-
-  :hover,
-  :focus {
-    color: #ff0000;
-  }
-`;

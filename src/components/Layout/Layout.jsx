@@ -9,15 +9,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
   return (
-    <Container>
-      <Header />
-      <Main>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </Main>
+    <>
+      <Container>
+        <Header />
+        <Main>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </Main>
+      </Container>
       <ToastContainer position="top-right" autoClose={3000} />
-    </Container>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ export const LinksCont = styled.div`
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 10px 0;
+  margin-bottom: 20px;
 `;
 
 export const LinksTitle = styled.h4`

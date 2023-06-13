@@ -10,7 +10,7 @@ export const Link = styled(BaseLink)`
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
   :hover,
   :focus {

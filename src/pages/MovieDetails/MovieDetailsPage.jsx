@@ -16,8 +16,6 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(location);
-
   useEffect(() => {
     getMovie();
     // eslint-disable-next-line

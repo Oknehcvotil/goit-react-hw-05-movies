@@ -4,10 +4,11 @@
   list-style: none;
   padding: 0;
   margin: 10px 0 0;
+  gap: 5px;
 }
 
 .page-item {
-  margin: 0 2px;
+  margin: 0;
 }
 
 .page-link {
@@ -27,7 +28,7 @@
 }
 
 .active .page-link {
-  background-color: #FF0000;
+  background-color: #ff0000;
   color: #fff;
-  border-color: #FF0000;
+  border-color: #ff0000;
 }

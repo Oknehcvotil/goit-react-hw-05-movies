@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import APIService from 'services/api-service';
 import { toast } from 'react-toastify';
+import { ReviewsItem, ReviewsAuthor } from './Reviews.styled';
 
 const apiService = new APIService();
 
@@ -17,7 +18,10 @@ const Reviews = () => {
   async function getMovieReviews() {
     try {
       const response = await apiService.getMovieReviews(movieId);
-      console.log(response.results);
+
+      if (response.results.length === 0) {
+        toast.info("We don't have any reviews for this movie");
+      }
       setMovieReviews(response.results);
     } catch (error) {
       toast.error(`${error.message}`);
@@ -26,11 +30,11 @@ const Reviews = () => {
 
   return (
     <ul>
-      {movieReviews.map(({id, author, content})=> (
-        <li key={id}>
-          <h5>Author: {author}</h5>
+      {movieReviews.map(({ id, author, content }) => (
+        <ReviewsItem key={id}>
+          <ReviewsAuthor>Author: {author}</ReviewsAuthor>
           <p>{content}</p>
-        </li>
+        </ReviewsItem>
       ))}
     </ul>
   );
