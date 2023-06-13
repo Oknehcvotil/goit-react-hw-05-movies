@@ -41,7 +41,7 @@ const Movies = () => {
 
   async function getMovies() {
     setIsLoading(true);
-    
+
     if (page === 1) {
       setMovies([]);
     }
@@ -49,7 +49,15 @@ const Movies = () => {
     try {
       const response = await apiService.searchMovieByQuery(query, page);
 
+      if (response.total_results === 0) {
+        toast.error(
+          'Sorry, there are no movies matching your search query. Please try again.'
+        );
+        return;
+      }
+
       setTotalPages(response.total_pages);
+
       setMovies(response.results);
     } catch (error) {
       toast.error(`${error.message}`);
